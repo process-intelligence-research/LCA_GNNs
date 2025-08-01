@@ -1,0 +1,37 @@
+[tool.pyright]
+# Type checking configuration
+pythonVersion = "3.10"
+include = ["src", "tests"]
+exclude = ["examples", "docs", "scripts"]
+
+# Very lenient type checking for ML project
+typeCheckingMode = "basic"
+reportMissingImports = false
+reportMissingTypeStubs = false
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+reportOptionalCall = false
+reportAttributeAccessIssue = false
+reportArgumentType = false
+reportReturnType = false
+reportGeneralTypeIssues = false
+reportPossiblyUnboundVariable = false
+reportCallIssue = false
+reportInvalidTypeForm = false
+reportAssignmentType = false
+
+# Ignore common ML library issues
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+reportUnknownParameterType = false
+
+# Allow dynamic imports for ML libraries
+strictListInference = false
+strictDictionaryInference = false
+strictSetInference = false
+strictParameterNoneValue = false
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"

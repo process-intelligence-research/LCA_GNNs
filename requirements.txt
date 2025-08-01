@@ -1,0 +1,27 @@
+numpy 
+openpyxl
+pandas
+pyyaml
+rdkit
+requests
+scikit-learn
+torch==2.7.0
+torchvision
+torchaudio
+torchdata
+torch-geometric
+-f https://data.pyg.org/whl/torch-2.7.0%2Bcpu.html
+torch-cluster
+-f https://data.pyg.org/whl/torch-2.7.0%2Bcpu.html
+torch-scatter
+-f https://data.pyg.org/whl/torch-2.7.0%2Bcpu.html
+torch-sparse
+-f https://data.pyg.org/whl/torch-2.7.0%2Bcpu.html
+torch-spline-conv
+tqdm
+wandb
+fastapi
+uvicorn
+ruff
+pyright
+pytest

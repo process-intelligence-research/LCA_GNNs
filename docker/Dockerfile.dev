@@ -1,0 +1,49 @@
+# LCA GNNs - Development Docker Image
+# Includes development tools and allows live code editing
+
+FROM python:3.10-slim as development
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONPATH="/app/src:$PYTHONPATH"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    curl \
+    vim \
+    htop \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Install additional development tools
+RUN pip install \
+    jupyter \
+    ipykernel \
+    matplotlib \
+    seaborn \
+    plotly
+
+# Copy application code (will be overridden by volume in docker-compose)
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p /app/data/processed /app/data/raw /app/trained_models /app/reports/figures
+
+# Expose Jupyter port
+EXPOSE 8888
+EXPOSE 8000
+
+# Default command for development
+CMD ["bash"]

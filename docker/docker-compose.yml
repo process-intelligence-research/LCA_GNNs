@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  lca-gnn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: lca-gnn-app
+    volumes:
+      # Mount data directories for persistent storage
+      - ./data:/app/data
+      - ./trained_models:/app/trained_models
+      - ./reports:/app/reports
+      # Mount configs if you want to modify them
+      - ./configs:/app/configs:ro
+    environment:
+      - PYTHONPATH=/app/src
+      - LOG_LEVEL=INFO
+    # Uncomment for FastAPI mode
+    # ports:
+    #   - "8000:8000"
+    # command: ["python", "-m", "uvicorn", "apps.fastAPI.app:app", "--host", "0.0.0.0", "--port", "8000"]
+    
+    # Default inference mode - override with docker-compose run
+    command: ["python", "main.py", "--help"]
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.path.append('/app/src'); from src.engines.predict_engines import predict_single_molecule; print('Health check passed')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional: Development service with mounted source code
+  lca-gnn-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: development
+    container_name: lca-gnn-dev
+    volumes:
+      - .:/app
+      - /app/__pycache__
+      - /app/.pytest_cache
+    environment:
+      - PYTHONPATH=/app/src
+      - LOG_LEVEL=DEBUG
+    profiles:
+      - dev
+    command: ["bash"]
+    tty: true
+    stdin_open: true
+
+networks:
+  default:
+    name: lca-gnn-network

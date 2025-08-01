@@ -1,0 +1,100 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+lca_gnn.log
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+
+# Documentation
+docs/_build/
+.readthedocs.yml
+*.rst~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (comment out if you want to include sample data)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/energy_mapping.json
+
+# Models (comment out if you want to include pre-trained models)
+trained_models/*.pth
+trained_models/*.pkl
+!trained_models/.gitkeep
+
+# Reports
+reports/figures/*
+!reports/figures/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.mypy_cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Package managers
+node_modules/
+*.egg-info/
+dist/
+build/
+
+# CI/CD (already in container)
+.github/
+
+# Examples (for development only)
+examples/
+
+# Local configuration overrides
+configs/local_*.yaml

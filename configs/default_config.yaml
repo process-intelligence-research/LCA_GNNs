@@ -1,0 +1,74 @@
+data:
+  augment_data: false
+  data_file: ''
+  data_path: ''
+  dataset_type: QSPR
+  normalize_features: true
+  processed_data_path: data/processed
+  raw_data_path: data/raw
+  target_tasks: []
+  task_mode: simple
+experiment:
+  checkpoint_dir: ./trained_models
+  enable_wandb: false
+  entity: qinghegao
+  experiment_prefix: ''
+  log_frequency: 10
+  notes: ''
+  project_name: GWP
+  run_name: null
+  save_checkpoints: true
+  tags: []
+hyperparameters:
+  batch_sizes:
+  - 20
+  dropouts:
+  - 0.1
+  hidden_dims:
+  - 128
+  learning_rates:
+  - 0.0001
+  - 5.0e-05
+  - 1.0e-05
+  num_layers_list:
+  - 3
+model:
+  activation: ReLU
+  batch_norm: true
+  dropout: 0.1
+  hidden_dim: 128
+  model_type: qspr
+  num_layers: 3
+  out_feature: 1
+optimizer:
+  betas: !!python/tuple
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  learning_rate: 0.0001
+  type: Adam
+  weight_decay: 0.0
+scheduler:
+  cooldown: 2
+  factor: 0.9
+  min_lr: 1.0e-09
+  patience: 10
+  threshold: 0.0001
+  type: ReduceLROnPlateau
+system:
+  deterministic: false
+  device: cpu
+  mixed_precision: false
+  num_workers: 4
+  pin_memory: true
+  seed: null
+training:
+  accumulate_grad_batches: 1
+  batch_size: 20
+  early_stopping_patience: 15
+  epochs: 500
+  gradient_clip_norm: null
+  k_fold: 10
+  model_save_path: trained_models
+  results_path: results
+  val_length: 0.1

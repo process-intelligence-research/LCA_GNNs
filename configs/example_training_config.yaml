@@ -1,0 +1,70 @@
+# Example Training Configuration for GNN and QSPR Models
+# This file demonstrates how to configure all training parameters using the new configuration system
+
+# Optimizer Configuration
+optimizer:
+  optimizer_type: "adam"
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  momentum: 0.9
+  betas: [0.9, 0.999]
+  eps: 1.0e-08
+
+# Learning Rate Scheduler Configuration
+scheduler:
+  scheduler_type: "reduce_on_plateau"
+  factor: 0.9
+  patience: 10
+  min_lr: 1.0e-09
+  threshold: 0.0001
+  threshold_mode: "rel"
+  cooldown: 0
+  verbose: false
+
+# Training Configuration
+training:
+  epochs: 500
+  batch_size: 20
+  val_length: 0.1
+  k_fold: 10
+  early_stopping_patience: 15
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  mixed_precision: false
+
+# Data Configuration
+data:
+  dataset_type: "GNN_C"
+  path: "."
+  data_file: "data.xlsx"
+
+# Model Configuration
+model:
+  model_type: "GNN_C_single"
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.1
+  activation: "relu"
+
+# Experiment Configuration
+experiment:
+  project_name: "GWP"
+  entity: "qinghegao"
+  experiment_prefix: ""
+  enable_wandb: true
+  save_checkpoints: true
+  checkpoint_dir: "checkpoints"
+
+# Hyperparameter Configuration
+hyperparameter:
+  learning_rates: [0.01, 0.001, 0.0001]
+  batch_sizes: [16, 32, 64]
+  hidden_dims: [64, 128, 256]
+  num_layers_options: [2, 3, 4]
+  dropout_rates: [0.1, 0.2, 0.3]
+
+# System Configuration
+system:
+  device: "auto"  # auto-detect CUDA/CPU
+  seed: 42
+  num_workers: 4
