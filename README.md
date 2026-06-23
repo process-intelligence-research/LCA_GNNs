@@ -381,6 +381,8 @@ This project is licensed under the GNU Affero General Public License v3.0 (AGPL-
 
 The AGPL-3.0 license allows commercial use while ensuring that any modifications or derivative works are also made available under the same license terms. As co-developers, contributors have co-ownership and user rights that are not limited by the publication license.
 
+Technische Universiteit Delft hereby disclaims all copyright interest in the software in this repository written by Artur M. Schweidtmann. Paulien Herder, Dean of Applied Science
+
  
 ## Contributors
 
