@@ -1,7 +1,7 @@
 # LCA GNNs - Development Docker Image
 # Includes development tools and allows live code editing
 
-FROM python:3.10-slim as development
+FROM python:3.14-slim as development
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
