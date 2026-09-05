@@ -5,7 +5,7 @@ pyyaml
 rdkit
 requests
 scikit-learn
-torch==2.7.0
+torch==2.14.0
 torchvision
 torchaudio
 torchdata
